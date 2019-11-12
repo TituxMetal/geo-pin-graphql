@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { GraphQLClient } from 'graphql-request'
 import { withStyles } from '@material-ui/core/styles'
 // import Typography from "@material-ui/core/Typography"
+
+import Context from '../../context'
 
 const ME_QUERY = `
   query {
@@ -18,6 +20,8 @@ const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID
 const graphqlUri = process.env.REACT_APP_GRAPHQL_URI
 
 const Login = ({ classes }) => {
+  const { dispatch } = useContext(Context)
+
   const onSuccess = async (googleUser) => {
     const idToken = googleUser.getAuthResponse().id_token
     const client = new GraphQLClient(graphqlUri, {
@@ -26,7 +30,7 @@ const Login = ({ classes }) => {
       }
     })
     const data = await client.request(ME_QUERY)
-    console.log({ data })
+    dispatch({ type: 'LOGIN_USER', payload: data.me })
   }
 
   return <GoogleLogin clientId={clientId} onSuccess={onSuccess} isSignedIn />
