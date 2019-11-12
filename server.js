@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 const typeDefs = require('./typeDefs')
 const resolvers = require('./resolvers')
+const { findOrCreateUser } = require('./controllers/userController')
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -13,7 +14,23 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: async ({ req }) => {
+    let authToken = null
+    let currentUser = null
+
+    try {
+      authToken = req.headers.authorization
+
+      if (authToken) {
+        currentUser = await findOrCreateUser(authToken)
+      }
+    } catch (err) {
+      process.stdout.write(`Unable to authenticate user with token ${authToken}`)
+    }
+
+    return { authToken, currentUser }
+  }
 })
 
 server.listen().then(({ url }) => process.stdout.write(`Server listening on ${url}`))
