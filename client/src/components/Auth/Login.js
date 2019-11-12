@@ -5,17 +5,8 @@ import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
 import Context from '../../context'
+import meQuery from '../../graphql/queries'
 
-const ME_QUERY = `
-  query {
-    me {
-      _id
-      name
-      email
-      picture
-    }
-  }
-`
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID
 const graphqlUri = process.env.REACT_APP_GRAPHQL_URI
 
@@ -30,7 +21,7 @@ const Login = ({ classes }) => {
           authorization: idToken
         }
       })
-      const { me } = await client.request(ME_QUERY)
+      const { me } = await client.request(meQuery)
       dispatch({ type: 'LOGIN_USER', payload: me })
     } catch (error) {
       onFailure(error)
