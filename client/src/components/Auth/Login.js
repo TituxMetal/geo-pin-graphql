@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { GraphQLClient } from 'graphql-request'
 import { withStyles } from '@material-ui/core/styles'
-// import Typography from "@material-ui/core/Typography"
+import Typography from '@material-ui/core/Typography'
 
 import Context from '../../context'
 
@@ -23,17 +23,37 @@ const Login = ({ classes }) => {
   const { dispatch } = useContext(Context)
 
   const onSuccess = async (googleUser) => {
-    const idToken = googleUser.getAuthResponse().id_token
-    const client = new GraphQLClient(graphqlUri, {
-      headers: {
-        authorization: idToken
-      }
-    })
-    const data = await client.request(ME_QUERY)
-    dispatch({ type: 'LOGIN_USER', payload: data.me })
+    try {
+      const idToken = googleUser.getAuthResponse().id_token
+      const client = new GraphQLClient(graphqlUri, {
+        headers: {
+          authorization: idToken
+        }
+      })
+      const { me } = await client.request(ME_QUERY)
+      dispatch({ type: 'LOGIN_USER', payload: me })
+    } catch (error) {
+      onFailure(error)
+    }
   }
 
-  return <GoogleLogin clientId={clientId} onSuccess={onSuccess} isSignedIn />
+  const onFailure = (error) => { throw new Error('Error logging in', error) }
+
+  return (
+    <div className={classes.root}>
+      <Typography component='h1' variant='h3' gutterBottom noWrap>
+        Welcome to GeoPin
+      </Typography>
+      <GoogleLogin
+        clientId={clientId}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        theme='dark'
+        isSignedIn
+      />
+
+    </div>
+  )
 }
 
 const styles = {
