@@ -12,6 +12,13 @@ const reducer = (state, { type, payload }) => {
         isAuth: payload
       }
     }
+    case 'LOGOUT_USER': {
+      return {
+        ...state,
+        currentUser: null,
+        isAuth: false
+      }
+    }
     default: {
       return state
     }
