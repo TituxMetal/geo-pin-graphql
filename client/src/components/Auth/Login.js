@@ -40,6 +40,7 @@ const Login = ({ classes }) => {
         clientId={clientId}
         onSuccess={onSuccess}
         onFailure={onFailure}
+        buttonText='Login with Google'
         theme='dark'
         isSignedIn
       />
