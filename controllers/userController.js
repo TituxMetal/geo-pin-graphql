@@ -7,7 +7,7 @@ const oauthClientId = process.env.OAUTH_CLIENT_ID
 
 const client = new OAuth2Client(oauthClientId)
 
-exports.findOrCreateUser = async (token) => {
+exports.findOrCreateUser = async token => {
   if (!token) {
     throw new AuthenticationError('No auth token provided!')
   }
@@ -17,7 +17,7 @@ exports.findOrCreateUser = async (token) => {
   return user || createNewUser(googleUser)
 }
 
-const verifyAuthToken = async (token) => {
+const verifyAuthToken = async token => {
   try {
     const ticket = await client.verifyIdToken({
       idToken: token,
@@ -30,9 +30,9 @@ const verifyAuthToken = async (token) => {
   }
 }
 
-const checkIfUserExists = (email) => User.findOne({ email }).exec()
+const checkIfUserExists = email => User.findOne({ email }).exec()
 
-const createNewUser = (googleUser) => {
+const createNewUser = googleUser => {
   const { name, email, picture } = googleUser
   const user = { name, email, picture }
 
