@@ -13,7 +13,7 @@ const graphqlUri = process.env.REACT_APP_GRAPHQL_URI
 const Login = ({ classes }) => {
   const { dispatch } = useContext(Context)
 
-  const onSuccess = async (googleUser) => {
+  const onSuccess = async googleUser => {
     try {
       const idToken = googleUser.getAuthResponse().id_token
       const client = new GraphQLClient(graphqlUri, {
@@ -29,7 +29,7 @@ const Login = ({ classes }) => {
     }
   }
 
-  const onFailure = (error) => { throw new Error('Error logging in', error) }
+  const onFailure = error => { throw new Error('Error logging in', error) }
 
   return (
     <div className={classes.root}>

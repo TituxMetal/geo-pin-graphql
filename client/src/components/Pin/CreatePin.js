@@ -1,5 +1,5 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
 // import TextField from "@material-ui/core/TextField";
 // import Typography from "@material-ui/core/Typography";
 // import Button from "@material-ui/core/Button";
@@ -8,29 +8,27 @@ import { withStyles } from "@material-ui/core/styles";
 // import ClearIcon from "@material-ui/icons/Clear";
 // import SaveIcon from "@material-ui/icons/SaveTwoTone";
 
-const CreatePin = ({ classes }) => {
-  return <div>CreatePin</div>;
-};
+const CreatePin = ({ classes }) => <div>CreatePin</div>
 
 const styles = theme => ({
   form: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
     paddingBottom: theme.spacing.unit
   },
   contentField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: "95%"
+    width: '95%'
   },
   input: {
-    display: "none"
+    display: 'none'
   },
   alignCenter: {
-    display: "flex",
-    alignItems: "center"
+    display: 'flex',
+    alignItems: 'center'
   },
   iconLarge: {
     fontSize: 40,
@@ -50,6 +48,6 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     marginLeft: 0
   }
-});
+})
 
-export default withStyles(styles)(CreatePin);
+export default withStyles(styles)(CreatePin)
