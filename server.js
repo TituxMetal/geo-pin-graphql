@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true
 })
   .then(() => process.stdout.write('Db connected!'))
-  .catch((error) => process.stdout.write(error))
+  .catch(error => process.stdout.write(error))
 
 const server = new ApolloServer({
   typeDefs,
