@@ -19,6 +19,21 @@ const reducer = (state, { type, payload }) => {
         isAuth: false
       }
     }
+    case 'CREATE_DRAFT': {
+      return {
+        ...state,
+        draft: {
+          longitude: 0,
+          latitude: 0
+        }
+      }
+    }
+    case 'UPDATE_DRAFT_LOCATION': {
+      return {
+        ...state,
+        draft: payload
+      }
+    }
     default: {
       return state
     }
