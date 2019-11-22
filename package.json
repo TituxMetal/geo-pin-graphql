@@ -18,7 +18,7 @@
     "mongoose": "^5.4.6"
   },
   "devDependencies": {
-    "eslint-config-standard-airbnb-bundle": "^1.0.4",
+    "eslint-config-standard-airbnb-bundle": "^1.0.5",
     "nodemon": "^1.18.10"
   }
 }
