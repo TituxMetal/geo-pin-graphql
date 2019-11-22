@@ -5,10 +5,10 @@ import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
 import Context from '../../context'
-import meQuery from '../../graphql/queries'
+import { meQuery } from '../../graphql/queries'
+import { graphqlUri } from '../../hooks/useGqlClient'
 
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID
-const graphqlUri = process.env.REACT_APP_GRAPHQL_URI
 
 const Login = ({ classes }) => {
   const { dispatch } = useContext(Context)
@@ -22,6 +22,7 @@ const Login = ({ classes }) => {
         }
       })
       const { me } = await client.request(meQuery)
+
       dispatch({ type: 'LOGIN_USER', payload: me })
       dispatch({ type: 'IS_LOGGED_IN', payload: googleUser.isSignedIn() })
     } catch (error) {
