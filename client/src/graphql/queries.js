@@ -1,7 +1,7 @@
-const meQuery = `
+export const meQuery = `
   query {
     me {
-      _id
+      id
       name
       email
       picture
@@ -9,4 +9,31 @@ const meQuery = `
   }
 `
 
-export default meQuery
+export const getPinsQuery = `
+  query {
+    getPins {
+      id
+      title
+      content
+      image
+      latitude
+      longitude
+      createdAt
+      author {
+        id
+        name
+        email
+        picture
+      }
+      comments {
+        text
+        createdAt
+        author {
+          id
+          name
+          picture
+        }
+      }
+    }
+  }
+`
