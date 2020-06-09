@@ -14,7 +14,7 @@
     "apollo-server": "^2.14.3",
     "env-cmd": "^10.0.1",
     "google-auth-library": "^3.0.1",
-    "graphql": "^14.1.1",
+    "graphql": "^15.1.0",
     "mongoose": "^5.4.6"
   },
   "devDependencies": {
