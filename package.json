@@ -19,6 +19,6 @@
   },
   "devDependencies": {
     "eslint-config-standard-airbnb-bundle": "^1.0.6",
-    "nodemon": "^1.18.10"
+    "nodemon": "^2.0.4"
   }
 }
