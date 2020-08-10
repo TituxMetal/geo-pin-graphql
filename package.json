@@ -15,7 +15,7 @@
     "env-cmd": "^10.1.0",
     "google-auth-library": "^6.0.6",
     "graphql": "^15.3.0",
-    "mongoose": "^5.9.27"
+    "mongoose": "^5.9.28"
   },
   "devDependencies": {
     "eslint-config-standard-airbnb-bundle": "^1.0.6",
